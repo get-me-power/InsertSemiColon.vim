@@ -8,6 +8,8 @@ function! InsertSemiColon#insert()
         "patternを使ってsubstute
         "s/\(.*\)$/\1;/g
         "substitute(line, '.*', line.';', 'g')
+        " setlineを用いることで末尾にセミコロンを追加
         call setline(line_num+1, line.';')
+        " if文にカッコがあるかないかを判断することで必要の無い箇所にセミコロンを保管することを防止する
     endfor
 endfunction
