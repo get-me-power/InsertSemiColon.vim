@@ -7,7 +7,9 @@ function! InsertSemiColon#insert()
         "s/\(.*\)$/\1;/g
         " setlineを用いることで末尾にセミコロンを追加
         if match(line,";") == -1
-            call setline(line_num+1, line.';')
+            if match(line, "{") == -1 && match(line, "}") == -1
+                call setline(line_num+1, line.';')
+            endif
         endif
         " if文にカッコがあるかないかを判断することで必要の無い箇所にセミコロンを保管することを防止する
     endfor
